@@ -220,14 +220,17 @@ export const PROOF_ITEMS = [
   {
     metric: "40+",
     label: "Engagements delivered across financial services, healthcare, and critical infrastructure",
+    pill: "Book a call",
   },
   {
     metric: "6",
     label: "Governance dimensions assessed per client engagement",
+    pill: "See frameworks",
   },
   {
     metric: "72hr",
     label: "Average gap-report turnaround after readiness assessment",
+    pill: "Read the note",
   },
 ] as const;
 

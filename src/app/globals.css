@@ -843,3 +843,16 @@ header[data-scrolled="true"]::before {
     background-clip: border-box;
   }
 }
+
+/* Proof deck — disable brutalist card hover chrome (shadow/sweep) for a clean fan */
+.proof-deck .brutalist-card {
+  box-shadow: none;
+}
+.proof-deck .brutalist-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+.proof-deck .brutalist-card::before,
+.proof-deck .brutalist-card::after {
+  display: none;
+}
