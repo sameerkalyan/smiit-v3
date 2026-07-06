@@ -37,7 +37,7 @@ export function HeroSection() {
   const typingDone = line1.done && line2.done;
 
   return (
-    <section className="hero-dark relative w-full px-6 pt-24 pb-20 lg:px-12 lg:pt-28 lg:pb-24 bg-[var(--pa)] overflow-hidden">
+    <section id="hero" className="hero-dark relative w-full px-6 pt-24 pb-20 lg:px-12 lg:pt-28 lg:pb-24 bg-[var(--pa)] overflow-hidden">
       <CyberCityBackground active={typingDone} />
 
       <div
