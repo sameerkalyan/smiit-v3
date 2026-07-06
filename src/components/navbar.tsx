@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { NAV_ITEMS } from "@/components/site-data";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Magnetic } from "@/components/magnetic";
 import { Menu, X, ArrowRight } from "lucide-react";
 
 export function Navbar() {
@@ -149,6 +150,7 @@ export function Navbar() {
           </ul>
           <div className="flex items-center gap-3 pl-7 border-l-2 border-[var(--line)]">
             <ThemeToggle />
+            <Magnetic strength={0.35}>
             <Link
               href="#booking"
               className="brutalist-cta inline-flex"
@@ -159,6 +161,7 @@ export function Navbar() {
               </span>
               <span className="brutalist-cta-label text-[10px]">BOOK A CALL</span>
             </Link>
+            </Magnetic>
           </div>
         </div>
 

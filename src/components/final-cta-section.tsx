@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/section";
 import { GhostWord } from "@/components/ghost-word";
+import { Magnetic } from "@/components/magnetic";
 import { motion } from "motion/react";
 import { EASE } from "@/lib/motion";
 
@@ -51,6 +52,7 @@ export function FinalCTASection() {
           confident AI adoption.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
+          <Magnetic strength={0.25}>
           <Link
             href="#booking"
             className="inline-flex items-center font-mono text-xs font-bold uppercase tracking-wider"
@@ -64,6 +66,7 @@ export function FinalCTASection() {
             </span>
             <span className="px-4 py-3 whitespace-nowrap">BOOK A DISCOVERY CALL</span>
           </Link>
+          </Magnetic>
           <Link
             href="#services"
             className="inline-flex items-center gap-2 text-sm font-mono font-bold uppercase tracking-wider text-[var(--brutalist-accent-foreground)] hover:text-[var(--pa2)] transition-colors"

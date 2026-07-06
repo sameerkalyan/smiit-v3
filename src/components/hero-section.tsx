@@ -13,6 +13,7 @@ const CyberCityBackground = dynamic(
 );
 
 import { AnimatedButton } from "@/components/animated-button";
+import { Magnetic } from "@/components/magnetic";
 
 const LINE1 = "EU AI ACT ENFORCEMENT";
 const LINE2 = "HAS BEGUN.";
@@ -81,6 +82,7 @@ export function HeroSection() {
             className="flex flex-wrap items-center justify-center gap-4 transition-opacity duration-500"
             style={{ opacity: typingDone ? 1 : 0 }}
           >
+            <Magnetic strength={0.3}>
             <AnimatedButton
               href="#booking"
               className="brutalist-cta inline-flex w-auto"
@@ -91,6 +93,7 @@ export function HeroSection() {
               </span>
               <span className="brutalist-cta-label px-4">BOOK A DISCOVERY CALL</span>
             </AnimatedButton>
+            </Magnetic>
             <Link
               href="#services"
               className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent-light)]"
