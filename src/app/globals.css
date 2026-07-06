@@ -1,0 +1,717 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "JetBrains Mono", ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-brutalist-accent: var(--brutalist-accent);
+  --color-brutalist-accent-foreground: var(--brutalist-accent-foreground);
+}
+
+:root {
+  --background: #11141b;
+  --foreground: #eaedf3;
+  --card: #161a22;
+  --card-foreground: #eaedf3;
+  --popover: #11141b;
+  --popover-foreground: #eaedf3;
+  --primary: #eaedf3;
+  --primary-foreground: #11141b;
+  --secondary: #1c2029;
+  --secondary-foreground: #eaedf3;
+  --muted: #1c2029;
+  --muted-foreground: #8a93a6;
+  --accent: #5b9dff;
+  --accent-foreground: #ffffff;
+  --destructive: #f04770;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #5b9dff;
+  --pa: #11141b;
+  --pa2: #0c0f17;
+  --ink: #eaedf3;
+  --ink2: #b0b7c9;
+  --ink3: #6b7282;
+  --line: rgba(255, 255, 255, 0.08);
+  --line2: rgba(255, 255, 255, 0.15);
+  --surface: #161a22;
+  --charcoal: #161a22;
+  --radius: 0.625rem;
+
+  --surface-base: var(--pa);
+  --surface-recessed: var(--pa2);
+  --surface-elevated: var(--surface);
+  --surface-highlight: var(--brutalist-accent);
+
+  --emphasis-primary: var(--brutalist-accent);
+  --emphasis-secondary: var(--accent);
+  --emphasis-critical: var(--destructive);
+
+  --section-spacing-sm: 5rem;
+  --section-spacing-md: 6.25rem;
+  --section-spacing-lg: 7.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-[color:var(--line)] outline-ring/50;
+  }
+  html {
+    @apply font-sans antialiased;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-[var(--pa)] text-[var(--ink)];
+    min-height: 100vh;
+  }
+  ::selection {
+    background: rgba(91, 157, 255, 0.2);
+    color: var(--foreground);
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+}
+
+@keyframes mq {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-marquee {
+  animation: mq 38s linear infinite;
+  white-space: nowrap;
+  display: inline-flex;
+  min-width: 100%;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* FOCUS STATES */
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+
+
+/* ── BRUTALIST DESIGN TOKENS ── */
+:root {
+  --brutalist-accent: #00453C;
+  --brutalist-accent-foreground: #ffffff;
+}
+
+
+
+/* ── GLITCH REVEAL ── */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.glitch-text[data-phase="scramble"] {
+  color: var(--accent);
+  transition: color 0.05s step-end;
+}
+
+.glitch-text[data-phase="slice"]::before {
+  opacity: 1;
+  color: rgba(240, 71, 112, 0.75);
+  clip-path: inset(25% 0 68% 0);
+  transform: translate(-4px, 2px);
+  animation: glitch-slice-before 0.18s steps(2, end) both;
+}
+.glitch-text[data-phase="slice"]::after {
+  opacity: 1;
+  color: rgba(91, 157, 255, 0.7);
+  clip-path: inset(72% 0 20% 0);
+  transform: translate(4px, -2px);
+  animation: glitch-slice-after 0.18s steps(2, end) both;
+}
+
+@keyframes glitch-slice-before {
+  0% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, -1px); }
+  33% { clip-path: inset(45% 0 50% 0); transform: translate(-5px, 3px); }
+  66% { clip-path: inset(60% 0 30% 0); transform: translate(-3px, 0); }
+  100% { clip-path: inset(25% 0 68% 0); transform: translate(-4px, 2px); }
+}
+@keyframes glitch-slice-after {
+  0% { clip-path: inset(80% 0 10% 0); transform: translate(5px, 1px); }
+  33% { clip-path: inset(50% 0 45% 0); transform: translate(2px, -3px); }
+  66% { clip-path: inset(30% 0 65% 0); transform: translate(4px, 2px); }
+  100% { clip-path: inset(72% 0 20% 0); transform: translate(4px, -2px); }
+}
+
+.glitch-text[data-phase="resolve"] {
+  color: var(--ink);
+  text-shadow: 0 0 4px rgba(91, 157, 255, 0.4);
+  transition: color 0.15s ease-out, text-shadow 0.2s ease-out;
+}
+
+.glitch-text[data-phase="flash"] {
+  color: var(--brutalist-accent);
+  text-shadow:
+    0 0 12px rgba(0, 69, 60, 0.8),
+    2px 0 0 rgba(240, 71, 112, 0.3),
+    -2px 0 0 rgba(91, 157, 255, 0.3);
+  transition:
+    color 0.08s steps(2, end),
+    text-shadow 0.08s steps(2, end);
+}
+
+.glitch-text[data-phase="done"] {
+  color: var(--ink);
+  text-shadow: none;
+  transition: color 0.25s ease-out, text-shadow 0.25s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch-text::before, .glitch-text::after { animation: none; opacity: 0; }
+  .glitch-text[data-phase="scramble"] { color: var(--ink); }
+  .glitch-text[data-phase="flash"] { color: var(--ink); text-shadow: none; }
+}
+
+/* ── BRUTALIST SECTION LABEL ── */
+.brutalist-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+/* ── BLINK ANIMATION ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ── ORANGE PULSE DOT ── */
+.brutalist-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  background: var(--brutalist-accent);
+  display: inline-block;
+}
+.brutalist-pulse-dot.sm {
+  width: 6px;
+  height: 6px;
+  animation: glow 2.4s ease-in-out infinite;
+}
+
+/* ── BRUTALIST CARD BASE ── */
+.brutalist-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--brutalist-accent);
+  background: var(--pa2);
+  color: var(--ink);
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out,
+    background 0.25s ease-out;
+}
+.brutalist-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 8px 8px 0px var(--brutalist-accent);
+}
+
+/* sweep highlight on hover — clipped to card */
+.brutalist-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 70%
+  );
+  clip-path: inset(0);
+  transition: left 0.55s ease-out;
+  z-index: 0;
+  pointer-events: none;
+}
+.brutalist-card:hover::before {
+  left: 110%;
+}
+
+/* bottom accent line on hover */
+.brutalist-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--brutalist-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease-out;
+  z-index: 2;
+}
+.brutalist-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* ensure card content renders above sweep layer */
+.brutalist-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── BRUTALIST CARD — INVERTED (slot 2) ── */
+.brutalist-card-inverted {
+  background: var(--brutalist-accent);
+  color: var(--brutalist-accent-foreground);
+}
+.brutalist-card-inverted .brutalist-muted {
+  color: rgba(255, 255, 255, 0.6);
+}
+.brutalist-card-inverted .brutalist-divider {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── TILT CARD (3D perspective wrapper) ── */
+.tilt-card-container {
+  position: relative;
+  perspective: 600px;
+}
+.tilt-card-container:hover {
+  z-index: 10;
+}
+
+/* Border via pseudo-element — lives outside any 3D transform chain, always flat in screen-space */
+.tilt-card-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border: 2px solid var(--brutalist-accent);
+  pointer-events: none;
+}
+
+/* Remove border from the inner card so it doesn't tilt in 3D space */
+.tilt-card-container .brutalist-card {
+  border: none;
+}
+
+.tilt-card-inner {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt-card-tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 20;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brutalist-accent-foreground);
+  background: var(--brutalist-accent);
+  padding: 0.25rem 0.625rem;
+  transform: translate(12px, -50%);
+  white-space: nowrap;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card-container {
+    perspective: none;
+  }
+  .tilt-card-tooltip {
+    display: none;
+  }
+}
+
+/* ── BRUTALIST FEATURE LIST ── */
+
+/* ── GLASS CARD HOVER (sweep + border slide) ── */
+.glass-card {
+  position: relative;
+  overflow: hidden;
+  border-left: 2px solid transparent;
+  transition:
+    background 0.3s ease,
+    border-left-color 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: left 0.5s ease-out;
+}
+.glass-card:hover::before {
+  left: 110%;
+}
+.glass-card:hover {
+  border-left-color: var(--brutalist-accent);
+}
+.glass-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── BRUTALIST FEATURE LIST ── */
+.brutalist-feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+.brutalist-feature-row .feat-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.brutalist-feature-row.excluded .feat-label {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+
+
+/* ── BRUTALIST CTA BUTTON ── */
+.brutalist-cta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--brutalist-accent);
+  color: var(--brutalist-accent-foreground);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: filter 0.15s ease;
+}
+.brutalist-cta:hover {
+  filter: brightness(1.15);
+}
+.brutalist-cta:active {
+  filter: brightness(0.95);
+}
+.brutalist-cta-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.75rem;
+  background: var(--ink);
+  color: var(--pa2);
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.22,1,0.36,1);
+}
+.brutalist-cta:hover .brutalist-cta-icon {
+  transform: translateX(3px);
+}
+.brutalist-cta-label {
+  padding-block: 0.625rem;
+  padding-inline: 0.75rem;
+  white-space: nowrap;
+  transition: transform 0.2s cubic-bezier(0.22,1,0.36,1);
+}
+.brutalist-cta:hover .brutalist-cta-label {
+  transform: translateX(2px);
+}
+
+/* Press feedback — subtle spring-like scale using CSS cubic-bezier */
+.brutalist-cta:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* ── BRUTALIST RECOMMENDED BADGE ── */
+.brutalist-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--pa2);
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.125rem 0.5rem;
+}
+
+/* ── FOOTER LINK HOVER — underline grow ── */
+.footer-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.footer-link::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--brutalist-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.footer-link:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* ── BACK TO TOP — spring-like entrance ── */
+.back-to-top {
+  transition:
+    opacity 0.35s cubic-bezier(0.22,1,0.36,1),
+    transform 0.35s cubic-bezier(0.22,1,0.36,1),
+    box-shadow 0.2s ease;
+}
+.back-to-top:hover {
+  box-shadow: 0 0 20px rgba(0, 69, 60, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+/* active scale handled via Tailwind's active:scale-95 on the element */
+
+/* ── NAVBAR ── */
+@keyframes nav-shimmer {
+  0% { background-position: 250% center; }
+  100% { background-position: -250% center; }
+}
+@keyframes underline-grow {
+  0% { transform: scaleX(0); }
+  60% { transform: scaleX(1.08); }
+  100% { transform: scaleX(1); }
+}
+header[data-scrolled]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(91, 157, 255, 0.04) 45%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(91, 157, 255, 0.04) 55%,
+    transparent 75%
+  );
+  background-size: 250% 100%;
+  animation: nav-shimmer 10s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+header[data-scrolled="true"]::before {
+  animation-duration: 6s;
+  opacity: 0.6;
+}
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  color: var(--ink3);
+  z-index: 1;
+  transition:
+    color 220ms ease,
+    transform 350ms cubic-bezier(0.22,1,0.36,1),
+    opacity 250ms ease;
+  transform-origin: center bottom;
+}
+.nav-link:hover {
+  color: var(--brutalist-accent);
+  transform: translateY(-2px) scale(1.03);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 50%;
+  height: 1.5px;
+  background: var(--brutalist-accent);
+  border-radius: 2px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 300ms cubic-bezier(0.22,1,0.36,1);
+  z-index: 2;
+}
+.nav-link:hover::after {
+  animation: underline-grow 300ms cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.nav-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 9999px;
+}
+.nav-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--brutalist-accent) 8%, transparent);
+  border: 1px solid rgba(0, 69, 60, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(0, 69, 60, 0.08), inset 0 1px 0 rgba(255,255,255,0.03);
+  transition:
+    left 380ms cubic-bezier(0.22,1,0.36,1),
+    width 380ms cubic-bezier(0.22,1,0.36,1),
+    opacity 220ms ease,
+    box-shadow 380ms cubic-bezier(0.22,1,0.36,1);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+}
+.nav-indicator.visible {
+  opacity: 1;
+  box-shadow: 0 0 16px rgba(0, 69, 60, 0.12), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.mobile-nav-enter {
+  animation: mobile-nav-in 0.25s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes mobile-nav-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.navbar-transition {
+  transition:
+    top 500ms cubic-bezier(0.22,1,0.36,1),
+    border-radius 500ms cubic-bezier(0.22,1,0.36,1),
+    background 500ms cubic-bezier(0.22,1,0.36,1),
+    box-shadow 500ms cubic-bezier(0.22,1,0.36,1),
+    backdrop-filter 500ms cubic-bezier(0.22,1,0.36,1),
+    border 500ms cubic-bezier(0.22,1,0.36,1),
+    left 500ms cubic-bezier(0.22,1,0.36,1),
+    right 500ms cubic-bezier(0.22,1,0.36,1),
+    width 500ms cubic-bezier(0.22,1,0.36,1);
+  max-width: 80rem;
+}
+.navbar-floating {
+  top: 28px;
+  left: 6%;
+  right: 6%;
+  width: 88%;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--pa) 72%, transparent);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+.navbar-scrolled {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border-radius: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--pa) 92%, transparent) 0%, var(--pa) 100%);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.12);
+}
+.navbar-inner {
+  height: 64px;
+  transition: height 500ms cubic-bezier(0.22,1,0.36,1);
+}
+.navbar-scrolled .navbar-inner {
+  height: 48px;
+}
