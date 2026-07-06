@@ -5,7 +5,13 @@ import { useInView } from "motion/react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useTypewriter } from "@/hooks/useTypewriter";
-import { CyberCityBackground } from "@/components/cyber-city-background";
+import dynamic from "next/dynamic";
+
+const CyberCityBackground = dynamic(
+  () => import("@/components/cyber-city-background").then((mod) => ({ default: mod.CyberCityBackground })),
+  { ssr: false }
+);
+
 import { AnimatedButton } from "@/components/animated-button";
 
 const LINE1 = "EU AI ACT ENFORCEMENT";
@@ -30,7 +36,7 @@ export function HeroSection() {
   const typingDone = line1.done && line2.done;
 
   return (
-    <section className="relative w-full px-6 pt-24 pb-20 lg:px-12 lg:pt-28 lg:pb-24 bg-[var(--pa)] overflow-hidden">
+    <section className="hero-dark relative w-full px-6 pt-24 pb-20 lg:px-12 lg:pt-28 lg:pb-24 bg-[var(--pa)] overflow-hidden">
       <CyberCityBackground active={typingDone} />
 
       <div
@@ -87,7 +93,7 @@ export function HeroSection() {
             </AnimatedButton>
             <Link
               href="#services"
-              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent)]"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent-light)]"
             >
               EXPLORE OUR SERVICES <ArrowRight size={14} strokeWidth={2.5} />
             </Link>

@@ -14,6 +14,7 @@ import { FinalCTASection } from "@/components/final-cta-section";
 import { Footer } from "@/components/footer";
 import { BackToTop } from "@/components/back-to-top";
 import { ReadingProgress } from "@/components/reading-progress";
+import { CookieConsent } from "@/components/cookie-consent";
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
       <Footer />
       <BackToTop />
       <ReadingProgress />
+      <CookieConsent />
     </>
   );
 }

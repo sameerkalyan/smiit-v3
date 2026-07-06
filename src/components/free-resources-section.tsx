@@ -50,7 +50,7 @@ export function FreeResourcesSection() {
 
                 <ContentCard.Body>
                   <motion.div
-                    className={`inline-flex items-center justify-center w-9 h-9 mb-3 ${isAccent ? "bg-white text-[var(--brutalist-accent)]" : "bg-[var(--brutalist-accent)] text-white"}`}
+                    className={`inline-flex items-center justify-center w-9 h-9 mb-3 ${isAccent ? "bg-[var(--brutalist-accent-foreground)] text-[var(--brutalist-accent)]" : "bg-[var(--brutalist-accent-light)] text-[var(--brutalist-accent-foreground)]"}`}
                     initial={{ scale: 0.6, opacity: 0 }}
                     animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.6, opacity: 0 }}
                     transition={{ duration: 0.4, ease: EASE, delay: cardDelay + 0.2 }}
@@ -59,7 +59,7 @@ export function FreeResourcesSection() {
                   </motion.div>
                   <p
                     className={`text-[10px] leading-relaxed mb-2 ${
-                      isAccent ? "text-white" : "text-[var(--ink3)]"
+                      isAccent ? "text-[var(--brutalist-accent-foreground)]" : "text-[var(--ink3)]"
                     }`}
                   >
                     {"// "}{magnet.title}
@@ -69,7 +69,7 @@ export function FreeResourcesSection() {
                   </h3>
                   <p
                     className={`text-xs leading-relaxed ${
-                      isAccent ? "text-white" : "text-[var(--ink2)]"
+                      isAccent ? "text-[var(--brutalist-accent-foreground)]" : "text-[var(--ink2)]"
                     }`}
                   >
                     {magnet.description}

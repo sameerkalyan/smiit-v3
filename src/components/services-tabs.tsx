@@ -4,7 +4,6 @@ import { useState, useRef, useCallback } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { SERVICES } from "@/components/site-data";
 import { Section } from "@/components/section";
-import { SectionHeading } from "@/components/section-heading";
 import { ContentCard } from "@/components/content-card";
 import { Check } from "lucide-react";
 import { EASE } from "@/lib/motion";
@@ -79,7 +78,7 @@ export function ServicesTabs() {
               className={`px-5 py-2.5 text-xs font-mono font-medium uppercase tracking-wider border-2 transition-colors cursor-pointer ${
                 activeIndex === idx
                   ? "border-[var(--brutalist-accent)] bg-[var(--brutalist-accent)] text-[var(--brutalist-accent-foreground)]"
-                  : "border-[var(--line)] text-[var(--ink2)] hover:border-[var(--brutalist-accent)] hover:text-[var(--ink)]"
+                  : "border-[var(--line)] text-[var(--ink2)] hover:border-[var(--brutalist-accent-light)] hover:text-[var(--ink)]"
               }`}
             >
               {s.title}
@@ -110,7 +109,7 @@ export function ServicesTabs() {
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                   transition={{ duration: 0.4, ease: EASE, delay: 0.15 }}
                 >
-                  <span className="inline-block px-2.5 py-1 text-[10px] font-mono font-medium border-2 border-[var(--brutalist-accent)] text-[var(--brutalist-accent)] bg-transparent mb-4">
+                  <span className="inline-block px-2.5 py-1 text-[10px] font-mono font-medium border-2 border-[var(--brutalist-accent-light)] text-[var(--brutalist-accent-light)] bg-transparent mb-4">
                     {active.tag.toUpperCase()}
                   </span>
                   <h3 className="text-xl font-mono font-bold tracking-tight uppercase text-[var(--ink)] mb-4">
@@ -122,7 +121,7 @@ export function ServicesTabs() {
                   <div className="flex flex-col gap-3">
                     {active.bullets.map((b, i) => (
                       <div key={i} className="brutalist-feature-row">
-                        <span className="feat-icon text-[var(--brutalist-accent)]">
+                         <span className="feat-icon text-[var(--brutalist-accent-light)]">
                           <Check size={14} strokeWidth={2.5} />
                         </span>
                         <span className="text-sm font-mono text-[var(--ink2)] leading-snug">
@@ -149,7 +148,7 @@ export function ServicesTabs() {
                             className="flex items-center justify-between text-sm font-mono py-1.5 border-b-2 border-[var(--line)]"
                           >
                             <span className="text-[var(--ink2)]">{f}</span>
-                            <span className="text-[9px] font-mono text-[var(--ink3)] uppercase tracking-wider px-2 py-0.5 border-2 border-[var(--brutalist-accent)] text-[var(--brutalist-accent)]">
+                            <span                             className="text-[9px] font-mono text-[var(--ink3)] uppercase tracking-wider px-2 py-0.5 border-2 border-[var(--brutalist-accent-light)] text-[var(--brutalist-accent-light)]">
                               {active.sideItems[0]}
                             </span>
                           </li>
@@ -159,7 +158,7 @@ export function ServicesTabs() {
                         <span className="text-[10px] font-mono text-[var(--ink3)] uppercase tracking-widest">
                           Stack coverage
                         </span>
-                        <span className="text-[10px] font-mono text-[var(--brutalist-accent)] uppercase">
+                        <span className="text-[10px] font-mono text-[var(--brutalist-accent-light)] uppercase">
                           Covered
                         </span>
                       </div>

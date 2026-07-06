@@ -47,7 +47,7 @@ export function TheClaimStats() {
           </motion.p>
         </div>
         <motion.div
-          className="pt-4 md:pt-8 border-l-2 border-[var(--brutalist-accent)] pl-6"
+          className="pt-4 md:pt-8 border-l-2 border-[var(--brutalist-accent-light)] pl-6"
           initial={{ opacity: 0, x: 12 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-40px 0px" }}
@@ -67,7 +67,7 @@ export function TheClaimStats() {
           </blockquote>
           <Link
             href="#services"
-            className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent)]"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent-light)]"
           >
             EXPLORE OUR SERVICES <ArrowRight size={14} strokeWidth={2.5} />
           </Link>

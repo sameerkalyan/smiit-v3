@@ -223,7 +223,6 @@ function InteractiveNodes({ mouseRef, active = false }: InteractiveNodesProps) {
 
       const phase = sparklePhases[i];
       const sparkle = Math.pow(Math.max(0, Math.sin(time * 2.5 + phase)), 8) * 0.6;
-      const breath = 0.08 + Math.sin(time * 1.5 + phase * 0.5) * 0.05;
 
       currentColor.copy(baseColor).lerp(activeColor, factor * activeLerp).lerp(sparkleColor, sparkle * activeLerp);
 
@@ -579,7 +578,7 @@ export function CyberCityCanvas({ active = false }: { active?: boolean }) {
 
   return (
     <div
-      className="absolute inset-0 z-0 select-none pointer-events-none w-full h-full bg-[#11141b] overflow-hidden"
+      className="absolute inset-0 z-0 select-none pointer-events-none w-full h-full bg-[var(--pa)] overflow-hidden"
     >
       <Canvas
         dpr={1}

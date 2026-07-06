@@ -83,14 +83,14 @@ function FeatureItem({ children, step, accent, isLast, className }: FeatureItemP
             className={`w-10 h-10 md:w-14 md:h-14 flex items-center justify-center border-2 font-mono font-bold text-sm md:text-base ${
               accent
                 ? "border-[var(--brutalist-accent)] bg-[var(--brutalist-accent)] text-[var(--brutalist-accent-foreground)]"
-                : "border-[var(--brutalist-accent)] bg-[var(--pa2)] text-[var(--brutalist-accent)]"
+                : "border-[var(--brutalist-accent-light)] bg-[var(--pa2)] text-[var(--brutalist-accent-light)]"
             }`}
             aria-hidden="true"
           >
             {step}
           </div>
           {!isLast && (
-            <div className="absolute left-1/2 -translate-x-1/2 top-[40px] md:top-[56px] bottom-[-24px] w-[2px] bg-[var(--brutalist-accent)] opacity-20" />
+            <div className="absolute left-1/2 -translate-x-1/2 top-[40px] md:top-[56px] bottom-[-24px] w-[2px] bg-[var(--brutalist-accent-light)] opacity-20" />
           )}
         </div>
         <div className="flex-1 pt-1">

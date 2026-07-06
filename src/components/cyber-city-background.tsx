@@ -36,7 +36,7 @@ export function CyberCityBackground({ active = false }: { active?: boolean }) {
   return (
     <div
       ref={ref}
-      className="absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out bg-[#11141b]"
+      className="absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out bg-[var(--pa)]"
       style={{ opacity: mounted ? 1 : 0 }}
       aria-hidden="true"
     >

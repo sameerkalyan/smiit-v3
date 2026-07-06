@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { ContentCard } from "@/components/content-card";
 import type { BlogArticle } from "@/types";
 import { EASE } from "@/lib/motion";
+import { ArrowRight } from "lucide-react";
 
 type Filter = "All topics" | "AI Governance" | "Infrastructure" | "AI Agents" | "Transformation";
 
@@ -18,82 +19,89 @@ function FeaturedCard({ article, isInView }: { article: BlogArticle; isInView: b
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{ duration: 0.5, ease: EASE }}
     >
-      <ContentCard variant="ghost" className="glass-card group p-8 md:p-10 border border-white/[0.08] border-l-2 backdrop-blur-md bg-white/[0.04] hover:bg-white/[0.07] transition-all duration-300">
-        <div className="flex items-center gap-3 mb-5">
-          <span className="text-[9px] font-mono text-[var(--brutalist-accent)] border border-[var(--brutalist-accent)] px-2 py-0.5 uppercase tracking-widest">
-            {article.category}
+      <ContentCard variant="accent" className="group h-full">
+        <ContentCard.Header>
+          <span className="brutalist-section-label" style={{ color: "rgba(255,255,255,0.6)" }}>
+            FEATURED
           </span>
-          <span className="text-[9px] font-mono text-[var(--ink3)]">{article.date}</span>
-          <span className="text-[9px] text-[var(--ink3)]">·</span>
-          <span className="text-[9px] font-mono text-[var(--ink3)]">{article.readTime}</span>
-        </div>
-        <h3 className="text-lg md:text-xl font-mono font-bold tracking-tight uppercase text-[var(--ink)] mb-4 group-hover:text-[var(--brutalist-accent)] transition-colors">
-          {article.title}
-        </h3>
-        <p className="text-sm font-mono text-[var(--ink2)] leading-relaxed mb-6">
-          {article.excerpt}
-        </p>
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono font-medium text-[var(--ink)] uppercase">{article.author.toUpperCase()}</span>
-          <span className="text-[9px] text-[var(--ink3)]">·</span>
-          <span className="text-[10px] font-mono text-[var(--ink3)] uppercase">{article.role.toUpperCase()}</span>
+          <span className="brutalist-section-label" style={{ color: "rgba(255,255,255,0.5)" }}>
+            001
+          </span>
+        </ContentCard.Header>
+        <ContentCard.Body className="pt-8 pb-6">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-[9px] font-mono border border-[var(--brutalist-accent-foreground)]/30 px-2 py-0.5 uppercase tracking-widest" style={{ color: "var(--brutalist-accent-foreground)" }}>
+              {article.category}
+            </span>
+            <span className="text-[9px] font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{article.date}</span>
+            <span style={{ color: "rgba(255,255,255,0.3)" }}>&middot;</span>
+            <span className="text-[9px] font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{article.readTime}</span>
+          </div>
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-mono font-bold tracking-tight uppercase mb-5 leading-tight" style={{ color: "var(--brutalist-accent-foreground)" }}>
+            {article.title}
+          </h3>
+          <p className="text-sm font-mono leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>
+            {article.excerpt}
+          </p>
+          <div className="flex items-center gap-3 mt-auto">
+            <span className="inline-flex items-center justify-center h-9 w-9 bg-[var(--brutalist-accent-foreground)] text-[var(--brutalist-accent)] shrink-0">
+              <ArrowRight size={14} strokeWidth={2.5} />
+            </span>
+            <span className="text-[10px] font-mono font-medium uppercase" style={{ color: "var(--brutalist-accent-foreground)" }}>Read article</span>
+          </div>
+        </ContentCard.Body>
+        <div className="px-5 py-3 border-t-2" style={{ borderColor: "rgba(255,255,255,0.15)" }}>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono font-medium uppercase" style={{ color: "rgba(255,255,255,0.8)" }}>{article.author.toUpperCase()}</span>
+            <span style={{ color: "rgba(255,255,255,0.3)" }}>&middot;</span>
+            <span className="text-[10px] font-mono uppercase" style={{ color: "rgba(255,255,255,0.5)" }}>{article.role.toUpperCase()}</span>
+          </div>
         </div>
       </ContentCard>
     </motion.div>
   );
 }
 
-function SecondaryCard({ article, isInView, delay }: { article: BlogArticle; isInView: boolean; delay: number }) {
+function CompactList({ articles, isInView }: { articles: BlogArticle[]; isInView: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.4, ease: EASE, delay }}
-    >
-      <ContentCard variant="ghost" className="glass-card group px-5 py-6 border border-white/[0.08] border-l-2 backdrop-blur-md bg-white/[0.04] hover:bg-white/[0.07] transition-all duration-300 h-full">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-[9px] font-mono text-[var(--brutalist-accent)] uppercase tracking-widest">
-            {article.category}
-          </span>
-          <span className="text-[9px] text-[var(--ink3)]">·</span>
-          <span className="text-[9px] font-mono text-[var(--ink3)]">{article.readTime}</span>
-        </div>
-        <h3 className="text-sm font-mono font-bold tracking-tight uppercase text-[var(--ink)] mb-3 group-hover:text-[var(--brutalist-accent)] transition-colors">
-          {article.title}
-        </h3>
-        <p className="text-xs font-mono text-[var(--ink2)] leading-relaxed flex-1">
-          {article.excerpt}
-        </p>
-        <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/[0.06]">
-          <span className="text-[9px] font-mono font-medium text-[var(--ink)] uppercase">{article.author.toUpperCase()}</span>
-          <span className="text-[9px] text-[var(--ink3)]">·</span>
-          <span className="text-[9px] font-mono text-[var(--ink3)] uppercase">{article.role.toUpperCase()}</span>
-        </div>
-      </ContentCard>
-    </motion.div>
-  );
-}
-
-function CompactCard({ article, isInView, delay }: { article: BlogArticle; isInView: boolean; delay: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-      transition={{ duration: 0.35, ease: EASE, delay }}
-    >
-      <div className="group flex flex-col gap-2 py-4 border-b border-white/[0.06] last:border-b-0">
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] font-mono text-[var(--brutalist-accent)] uppercase tracking-widest">
-            {article.category}
-          </span>
-          <span className="text-[9px] text-[var(--ink3)]">·</span>
-          <span className="text-[9px] font-mono text-[var(--ink3)]">{article.date}</span>
-        </div>
-        <h3 className="text-xs font-mono font-bold tracking-tight uppercase text-[var(--ink)] group-hover:text-[var(--brutalist-accent)] transition-colors">
-          {article.title}
-        </h3>
+    <div className="border-2 border-[var(--line)] bg-[var(--surface)]">
+      <div className="flex items-center justify-between px-5 py-3 border-b-2 border-[var(--line)]">
+        <span className="brutalist-section-label">MORE_READING</span>
+        <span className="brutalist-section-label opacity-40">{String(articles.length).padStart(2, "0")}</span>
       </div>
-    </motion.div>
+      <div>
+        {articles.map((article, idx) => (
+          <motion.div
+            key={article.id}
+            className="group px-5 py-4 hover:bg-[var(--line)] transition-colors cursor-pointer border-b border-[var(--line)] last:border-b-0"
+            initial={{ opacity: 0, x: -8 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
+            transition={{ duration: 0.3, ease: EASE, delay: 0.8 + idx * 0.1 }}
+          >
+            <div className="flex items-start gap-4">
+              <span className="text-[10px] font-mono font-bold text-[var(--ink3)] shrink-0 mt-0.5">
+                {String(idx + 1).padStart(2, "0")}
+              </span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[8px] font-mono text-[var(--brutalist-accent-light)] uppercase tracking-widest">
+                    {article.category}
+                  </span>
+                  <span className="text-[8px] text-[var(--ink3)]">&middot;</span>
+                  <span className="text-[8px] font-mono text-[var(--ink3)]">{article.date}</span>
+                </div>
+                <h4 className="text-xs font-mono font-bold tracking-tight uppercase text-[var(--ink)] group-hover:text-[var(--brutalist-accent-light)] transition-colors leading-snug">
+                  {article.title}
+                </h4>
+              </div>
+              <span className="text-[9px] font-mono text-[var(--ink3)] shrink-0 mt-0.5">
+                {article.readTime.replace(" read", "")}
+              </span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -155,8 +163,7 @@ export function InsightsSection() {
 
   const filtered = filter === "All topics" ? BLOG_ARTICLES : BLOG_ARTICLES.filter((a) => a.category === filter);
   const featured = filtered[0];
-  const secondary = filtered.slice(1, 3);
-  const compact = filtered.slice(3);
+  const rest = filtered.slice(1);
 
   return (
     <Section
@@ -185,7 +192,7 @@ export function InsightsSection() {
             className={`px-4 py-2 text-[10px] font-mono font-medium uppercase tracking-wider border-2 whitespace-nowrap cursor-pointer ${
               filter === f
                 ? "border-[var(--brutalist-accent)] bg-[var(--brutalist-accent)] text-[var(--brutalist-accent-foreground)]"
-                : "border-[var(--line)] text-[var(--ink2)] hover:border-[var(--brutalist-accent)] hover:text-[var(--ink)]"
+                : "border-[var(--line)] text-[var(--ink2)] hover:border-[var(--brutalist-accent-light)] hover:text-[var(--ink)]"
             }`}
           >
             {f.toUpperCase()}
@@ -206,28 +213,23 @@ export function InsightsSection() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {featured && <FeaturedCard article={featured} isInView={isInView} />}
-
-            {secondary.length > 0 && (
-              <div className="grid md:grid-cols-2 gap-0 mt-0">
-                {secondary.map((article, idx) => (
-                  <SecondaryCard key={article.id} article={article} isInView={isInView} delay={0.5 + idx * 0.5} />
-                ))}
-              </div>
-            )}
-
-            {compact.length > 0 && (
-              <div className="mt-2 md:ml-8 md:max-w-md">
-                {compact.map((article, idx) => (
-                  <CompactCard key={article.id} article={article} isInView={isInView} delay={1 + idx * 0.3} />
-                ))}
+            {featured && (
+              <div className="grid md:grid-cols-5 gap-6">
+                <div className="md:col-span-3">
+                  <FeaturedCard article={featured} isInView={isInView} />
+                </div>
+                <div className="md:col-span-2">
+                  {rest.length > 0 && (
+                    <CompactList articles={rest} isInView={isInView} />
+                  )}
+                </div>
               </div>
             )}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="mt-16 pt-8 border-t-2 border-[var(--brutalist-accent)]">
+      <div className="mt-16 pt-8 border-t-2 border-[var(--brutalist-accent-light)]">
         <div className="flex flex-col md:flex-row md:items-center gap-6">
           <div className="max-w-md">
             <p className="text-[10px] font-mono text-[var(--ink3)] uppercase tracking-widest mb-3">
@@ -252,12 +254,12 @@ export function InsightsSection() {
               value={newsletterEmail}
               onChange={(e) => setNewsletterEmail(e.target.value)}
               placeholder="you@company.com"
-              className="flex-1 min-w-0 border-2 border-r-0 sm:border-r-0 border-[var(--brutalist-accent)] bg-[var(--pa)] px-4 py-3 text-xs font-mono text-[var(--ink)] placeholder:text-[var(--ink3)] focus:outline-2 focus:outline-[var(--brutalist-accent)] focus:outline-offset-2"
+              className="flex-1 min-w-0 border-2 border-r-0 sm:border-r-0 border-[var(--brutalist-accent-light)] bg-[var(--pa)] px-4 py-3 text-xs font-mono text-[var(--ink)] placeholder:text-[var(--ink3)] focus:outline-2 focus:outline-[var(--brutalist-accent-light)] focus:outline-offset-2"
             />
             <button
               type="submit"
               disabled={newsletterStatus === "loading"}
-              className="inline-flex items-center shrink-0 font-mono text-xs font-bold uppercase tracking-wider border-2 border-[var(--brutalist-accent)] bg-[var(--brutalist-accent)] text-[var(--brutalist-accent-foreground)]"
+              className="inline-flex items-center shrink-0 font-mono text-xs font-bold uppercase tracking-wider border-2 border-[var(--brutalist-accent-light)] bg-[var(--brutalist-accent)] text-[var(--brutalist-accent-foreground)]"
             >
               <span className="flex items-center justify-center w-9 h-10 bg-[var(--pa2)] text-[var(--ink)] shrink-0">
                 {newsletterStatus === "success" ? (
@@ -275,7 +277,7 @@ export function InsightsSection() {
           </form>
           {newsletterStatus === "success" && (
             <p className="text-[10px] font-mono text-[var(--ink3)] mt-3">
-              Confirmation sent. Check your inbox.
+              Coming soon. Confirmation will be sent to your inbox.
             </p>
           )}
         </div>

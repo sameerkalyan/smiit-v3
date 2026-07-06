@@ -24,7 +24,7 @@ const surfaceMap: Record<Surface, string> = {
   base: "bg-[var(--surface-base)]",
   recessed: "bg-[var(--surface-recessed)]",
   elevated: "bg-[var(--surface-elevated)]",
-  highlight: "bg-[var(--surface-highlight)]",
+  highlight: "bg-[var(--surface-highlight)] text-[var(--brutalist-accent-foreground)]",
 };
 
 const spacingMap: Record<Spacing, string> = {
@@ -95,7 +95,7 @@ export function Section({
             <span
               className={cn(
                 "brutalist-section-label",
-                isHighlight && "text-white/50"
+                isHighlight && "text-[var(--brutalist-accent-foreground)]/50"
               )}
             >
               {index !== undefined ? `SECTION: ${label}` : label}
@@ -105,7 +105,7 @@ export function Section({
               <span
                 className={cn(
                   "brutalist-section-label",
-                  isHighlight && "text-white/50"
+                  isHighlight && "text-[var(--brutalist-accent-foreground)]/50"
                 )}
               >
                 {String(index).padStart(3, "0")}

@@ -32,7 +32,7 @@ function FeatureList({
           {feat.included ? (
             <span
               className={`feat-icon ${
-                isInverted ? "text-white" : "text-[var(--brutalist-accent)]"
+                isInverted ? "text-[var(--brutalist-accent-foreground)]" : "text-[var(--brutalist-accent-light)]"
               }`}
             >
               <Check size={14} strokeWidth={2.5} />
@@ -40,7 +40,7 @@ function FeatureList({
           ) : (
             <span
               className={`feat-icon ${
-                isInverted ? "text-white" : "text-[var(--ink3)]"
+                isInverted ? "text-[var(--brutalist-accent-foreground)]" : "text-[var(--ink3)]"
               } opacity-30`}
             >
               <Minus size={14} strokeWidth={2} />
@@ -51,7 +51,7 @@ function FeatureList({
               feat.included
                 ? ""
                 : isInverted
-                  ? "text-white line-through opacity-50"
+                  ? "text-[var(--brutalist-accent-foreground)] line-through opacity-50"
                   : "text-[var(--ink3)] line-through opacity-40"
             }`}
           >
@@ -104,7 +104,7 @@ function IndustryCardInner({
           </span>
           <span
             className="brutalist-section-label"
-            style={!isInverted ? { opacity: 0.4 } : { color: "rgba(255,255,255,0.7)" }}
+            style={!isInverted ? { opacity: 0.4 } : { color: "var(--brutalist-accent-foreground)", opacity: 0.7 }}
           >
             {String(index + 1).padStart(2, "0")}
           </span>
@@ -113,7 +113,7 @@ function IndustryCardInner({
         <ContentCard.Body>
           <p
             className={`text-[10px] leading-relaxed mb-2 ${
-              isInverted ? "text-white" : "text-[var(--ink3)]"
+              isInverted ? "text-[var(--brutalist-accent-foreground)]" : "text-[var(--ink3)]"
             }`}
             style={{ letterSpacing: "0.02em" }}
           >
@@ -124,7 +124,7 @@ function IndustryCardInner({
           </h3>
           <p
             className={`text-xs leading-relaxed ${
-              isInverted ? "text-white" : "text-[var(--ink2)]"
+              isInverted ? "text-[var(--brutalist-accent-foreground)]" : "text-[var(--ink2)]"
             }`}
           >
             {ind.description}

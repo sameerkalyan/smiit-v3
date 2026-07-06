@@ -18,7 +18,7 @@ export function FinalCTASection() {
     >
       <div className="flex flex-col items-center text-center">
         <motion.div
-          className="w-24 h-[2px] bg-[var(--brutalist-accent)] mb-10 origin-center"
+          className="w-24 h-[2px] bg-[var(--brutalist-accent-light)] mb-10 origin-center"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, margin: "-40px 0px" }}
@@ -35,7 +35,7 @@ export function FinalCTASection() {
             YOUR AI.{" "}
           </motion.span>
           <motion.span
-            className="inline-block text-[var(--ink)]"
+            className="inline-block text-[var(--brutalist-accent-foreground)]"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px 0px" }}
@@ -44,7 +44,7 @@ export function FinalCTASection() {
             PROPERLY GOVERNED.
           </motion.span>
         </h2>
-        <p className="text-sm font-mono leading-relaxed mb-8 max-w-lg text-white/80">
+        <p className="text-sm font-mono leading-relaxed mb-8 max-w-lg text-[var(--brutalist-accent-foreground)]/80">
           Free assessments and senior conversations. No strings. No process. First step towards compliant,
           confident AI adoption.
         </p>
@@ -64,7 +64,7 @@ export function FinalCTASection() {
           </Link>
           <Link
             href="#services"
-            className="inline-flex items-center gap-2 text-sm font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-mono font-bold uppercase tracking-wider text-[var(--brutalist-accent-foreground)] hover:text-[var(--pa2)] transition-colors"
           >
             TAKE THE FREE ASSESSMENT <ArrowRight size={14} strokeWidth={2.5} />
           </Link>

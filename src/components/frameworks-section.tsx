@@ -35,7 +35,7 @@ export function FrameworksSection() {
               className="grid grid-cols-[5rem_9rem_1fr] md:grid-cols-[6rem_10rem_1fr] items-center gap-2 md:gap-4 py-4 border-b border-[var(--line)] first:border-t"
             >
               <motion.span
-                className="text-[10px] font-mono font-medium uppercase tracking-widest px-2 py-0.5 border-2 border-[var(--brutalist-accent)] text-[var(--brutalist-accent)] w-fit"
+                className="text-[10px] font-mono font-medium uppercase tracking-widest px-2 py-0.5 border-2 border-[var(--brutalist-accent-light)] text-[var(--brutalist-accent-light)] w-fit"
                 initial={{ opacity: 0, x: -10 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                 transition={{ duration: 0.3, ease: EASE, delay: rowDelay }}

@@ -41,20 +41,20 @@ export function HowWeWork() {
                   className={`w-10 h-10 md:w-14 md:h-14 flex items-center justify-center border-2 font-mono font-bold text-sm md:text-base transition-colors duration-500 ${
                     isAccent
                       ? "border-[var(--brutalist-accent)] bg-[var(--brutalist-accent)] text-[var(--brutalist-accent-foreground)]"
-                      : "border-[var(--brutalist-accent)] bg-[var(--pa2)] text-[var(--brutalist-accent)]"
+                      : "border-[var(--brutalist-accent-light)] bg-[var(--pa2)] text-[var(--brutalist-accent-light)]"
                   }`}
                   aria-hidden="true"
                 >
                   {phase.phase}
                 </div>
                 {idx < ENGAGEMENT_PHASES.length - 1 && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-[40px] md:top-[56px] bottom-[-34px] w-[2px] bg-[var(--brutalist-accent)] opacity-20" />
+                  <div className="absolute left-1/2 -translate-x-1/2 top-[40px] md:top-[56px] bottom-[-34px] w-[2px] bg-[var(--brutalist-accent-light)] opacity-20" />
                 )}
               </div>
               <div className="flex-1 pt-1">
                 <h3
                   className={`text-sm font-mono font-bold uppercase tracking-tight mb-1 ${
-                    isAccent ? "text-[var(--brutalist-accent)]" : ""
+                    isAccent ? "text-[var(--brutalist-accent)]" : "text-[var(--brutalist-accent-light)]"
                   }`}
                 >
                   {phase.title}
@@ -71,7 +71,7 @@ export function HowWeWork() {
                       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -12 }}
                       transition={{ duration: 0.3, ease: EASE, delay: delay + 0.3 + di * 0.06 }}
                     >
-                      <span className="feat-icon text-[var(--brutalist-accent)]">
+                      <span className="feat-icon text-[var(--brutalist-accent-light)]">
                         <Check size={13} strokeWidth={2.5} />
                       </span>
                       <span className="text-xs leading-snug text-[var(--ink2)]">

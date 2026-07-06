@@ -46,7 +46,7 @@ export function BookingSection() {
                   href={type.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent)] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent-light)] transition-colors"
                   aria-label={`Book ${type.label} (opens in new window)`}
                 >
                   BOOK NOW <ArrowRight size={14} strokeWidth={2.5} />
