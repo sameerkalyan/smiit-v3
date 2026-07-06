@@ -5,14 +5,12 @@ import Link from "next/link";
 import { NAV_ITEMS } from "@/components/site-data";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Magnetic } from "@/components/magnetic";
+import { Dock } from "@/components/dock";
 import { Menu, X, ArrowRight } from "lucide-react";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [indicator, setIndicator] = useState({ left: 0, width: 0, visible: false });
-  const ulRef = useRef<HTMLUListElement>(null);
-  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -85,32 +83,12 @@ export function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  const moveIndicator = (el: HTMLElement | null) => {
-    if (!el || !ulRef.current) return;
-    const ulRect = ulRef.current.getBoundingClientRect();
-    const elRect = el.getBoundingClientRect();
-    setIndicator({
-      left: elRect.left - ulRect.left,
-      width: elRect.width,
-      visible: true,
-    });
-  };
-
-  const handleItemEnter = (index: number) => {
-    const el = itemRefs.current[index];
-    moveIndicator(el);
-  };
-
-  const handleUlLeave = () => {
-    setIndicator((prev) => ({ ...prev, visible: false }));
-  };
-
   return (
     <header
       data-scrolled={scrolled}
       className={`fixed z-50 navbar-transition ${scrolled ? "navbar-scrolled" : "navbar-floating"}`}
     >
-      <nav className="mx-auto px-8 flex items-center justify-between lg:px-10 relative z-[1] navbar-inner">
+      <nav className="mx-auto px-6 flex items-center justify-between gap-4 lg:px-10 relative z-[1] navbar-inner">
         <Link href="/" prefetch={false} className="flex items-center gap-2.5 shrink-0" aria-label="SMIIT CyberAI home">
           <span className="inline-flex items-center justify-center h-7 w-7 bg-[var(--brutalist-accent)] font-mono text-[10px] font-bold text-[var(--brutalist-accent-foreground)]">
             SC
@@ -120,49 +98,30 @@ export function Navbar() {
           </span>
         </Link>
 
-        <div
-          className="hidden md:flex items-center gap-9"
-          onMouseLeave={handleUlLeave}
-        >
-          <ul
-            ref={ulRef}
-            className="flex items-center gap-2 relative p-1"
+        <div className="hidden md:flex flex-1 items-center justify-center">
+          <Dock
+            items={NAV_ITEMS.map((item) => ({
+              label: item.label,
+              href: item.href,
+              icon: <item.icon size={18} strokeWidth={2} />,
+            }))}
+          />
+        </div>
+
+        <div className="hidden md:flex items-center gap-3 shrink-0">
+          <ThemeToggle />
+          <Magnetic strength={0.35}>
+          <Link
+            href="#booking"
+            className="brutalist-cta inline-flex"
+            aria-label="Book a call"
           >
-            <div
-              className={`nav-indicator ${indicator.visible ? "visible" : ""}`}
-              style={{
-                left: indicator.left,
-                width: indicator.width,
-              }}
-            />
-            {NAV_ITEMS.map((item, index) => (
-              <li
-                key={item.label}
-                ref={(el) => { itemRefs.current[index] = el; }}
-                onMouseEnter={() => handleItemEnter(index)}
-                className="list-none"
-              >
-                <Link href={item.href} className="nav-link">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="flex items-center gap-3 pl-7 border-l-2 border-[var(--line)]">
-            <ThemeToggle />
-            <Magnetic strength={0.35}>
-            <Link
-              href="#booking"
-              className="brutalist-cta inline-flex"
-              aria-label="Book a call"
-            >
-              <span className="brutalist-cta-icon h-9" style={{ background: "var(--pa2)", color: "var(--ink)" }}>
-                <ArrowRight size={12} strokeWidth={2.5} />
-              </span>
-              <span className="brutalist-cta-label text-[10px]">BOOK A CALL</span>
-            </Link>
-            </Magnetic>
-          </div>
+            <span className="brutalist-cta-icon h-9" style={{ background: "var(--pa2)", color: "var(--ink)" }}>
+              <ArrowRight size={12} strokeWidth={2.5} />
+            </span>
+            <span className="brutalist-cta-label text-[10px]">BOOK A CALL</span>
+          </Link>
+          </Magnetic>
         </div>
 
         <button

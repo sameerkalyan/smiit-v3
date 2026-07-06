@@ -14,6 +14,7 @@ const CyberCityBackground = dynamic(
 
 import { AnimatedButton } from "@/components/animated-button";
 import { Magnetic } from "@/components/magnetic";
+import { DiaTextReveal } from "@/components/dia-text-reveal";
 
 const LINE1 = "EU AI ACT ENFORCEMENT";
 const LINE2 = "HAS BEGUN.";
@@ -37,7 +38,7 @@ export function HeroSection() {
   const typingDone = line1.done && line2.done;
 
   return (
-    <section id="hero" className="hero-dark relative w-full px-6 pt-24 pb-20 lg:px-12 lg:pt-28 lg:pb-24 bg-[var(--pa)] overflow-hidden">
+    <section id="hero" className="hero-dark relative w-full px-6 pt-32 pb-20 lg:px-12 lg:pt-44 lg:pb-24 bg-[var(--pa)] overflow-hidden">
       <CyberCityBackground active={typingDone} />
 
       <div
@@ -63,11 +64,13 @@ export function HeroSection() {
           </h1>
 
           <p
-            className="text-sm md:text-base font-mono text-[var(--ink2)] leading-relaxed mb-6 transition-opacity duration-500"
+            className="text-sm md:text-base font-mono text-[var(--ink2)] leading-relaxed mb-6 transition-opacity duration-500 max-w-2xl mx-auto"
             style={{ opacity: typingDone ? 1 : 0 }}
           >
-            We help regulated organisations move from obligation to evidence — governance programmes,
-            cloud architecture, and forward-deployed engineers who ship.
+            <DiaTextReveal
+              text="We help regulated organisations move from obligation to evidence — governance programmes, cloud architecture, and forward-deployed engineers who ship."
+              active={typingDone}
+            />
           </p>
 
           <p

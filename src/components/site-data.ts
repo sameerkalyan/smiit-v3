@@ -1,13 +1,17 @@
+import type { LucideIcon } from "lucide-react";
+import { LayoutGrid, Boxes, Newspaper, MessageSquare } from "lucide-react";
+
 export interface NavItem {
   label: string;
   href: string;
+  icon: LucideIcon;
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Services", href: "#services" },
-  { label: "Frameworks", href: "#frameworks" },
-  { label: "Insights", href: "#insights" },
-  { label: "Talk to us", href: "#booking" },
+  { label: "Services", href: "#services", icon: LayoutGrid },
+  { label: "Frameworks", href: "#frameworks", icon: Boxes },
+  { label: "Insights", href: "#insights", icon: Newspaper },
+  { label: "Talk to us", href: "#booking", icon: MessageSquare },
 ];
 
 export const BOOKING_TYPES = [
