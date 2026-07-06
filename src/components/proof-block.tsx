@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { PROOF_ITEMS } from "@/components/site-data";
 import { Section } from "@/components/section";
+import { GhostWord } from "@/components/ghost-word";
 import { motion, useInView } from "motion/react";
 import { EASE } from "@/lib/motion";
 
@@ -87,6 +88,7 @@ export function ProofBlock() {
       motionTier="static"
       spacing="sm"
       className="border-y border-[var(--line)]"
+      background={<GhostWord size="md" align="right" drift={80}>evidence</GhostWord>}
     >
       <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-0">
         {PROOF_ITEMS.map((item, idx) => (

@@ -6,6 +6,7 @@ import { ArrowRight, Check, Minus } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Section } from "@/components/section";
+import { GhostWord } from "@/components/ghost-word";
 import { SectionHeading } from "@/components/section-heading";
 import { TiltCard } from "@/components/tilt-card";
 import { ContentCard } from "@/components/content-card";
@@ -165,6 +166,7 @@ export function IndustriesSection() {
       index={7}
       surface="recessed"
       motionTier="static"
+      background={<GhostWord size="lg" align="left" drift={130}>regulated</GhostWord>}
     >
       <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
         <div className="flex flex-col gap-3">

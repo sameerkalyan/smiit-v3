@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/section";
+import { GhostWord } from "@/components/ghost-word";
 import { motion } from "motion/react";
 import { EASE } from "@/lib/motion";
 
@@ -15,6 +16,7 @@ export function FinalCTASection() {
       motionTier="supported"
       spacing="lg"
       className="overflow-hidden"
+      background={<GhostWord size="xl" align="center" drift={60} opacityRange={[0.04, 0.08, 0.04]}>governed</GhostWord>}
     >
       <div className="flex flex-col items-center text-center">
         <motion.div
@@ -69,16 +71,6 @@ export function FinalCTASection() {
             TAKE THE FREE ASSESSMENT <ArrowRight size={14} strokeWidth={2.5} />
           </Link>
         </div>
-        <motion.span
-          className="text-[20rem] lg:text-[24rem] font-mono font-bold text-[var(--ink)]/[0.06] leading-none select-none pointer-events-none mt-[-4rem] mb-[-6rem]"
-          aria-hidden="true"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "40px 0px" }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          governed
-        </motion.span>
       </div>
     </Section>
   );

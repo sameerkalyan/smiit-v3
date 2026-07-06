@@ -11,6 +11,7 @@ type Spacing = "sm" | "md" | "lg";
 
 interface SectionProps {
   children: ReactNode;
+  background?: ReactNode;
   id?: string;
   label?: string;
   index?: number | string;
@@ -63,6 +64,7 @@ const motionVariants: Record<MotionTier, Variants> = {
 
 export function Section({
   children,
+  background,
   id,
   label,
   index,
@@ -79,7 +81,7 @@ export function Section({
       id={id}
       aria-label={label ? String(label).replace(/_/g, " ") : undefined}
       className={cn(
-        "w-full px-6 lg:px-12",
+        "relative overflow-hidden w-full px-6 lg:px-12",
         surfaceMap[surface],
         spacingMap[spacing],
         className
@@ -89,7 +91,8 @@ export function Section({
       whileInView="visible"
       viewport={{ once: true, margin: "-40px 0px" }}
     >
-      <div className="mx-auto max-w-7xl">
+      {background}
+      <div className="relative z-10 mx-auto max-w-7xl">
         {showLabel && (
           <div className="flex items-center gap-4 mb-8">
             <span

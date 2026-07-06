@@ -5,6 +5,7 @@ import { motion, useInView } from "motion/react";
 import { ENGAGEMENT_PHASES } from "@/components/site-data";
 import { Check } from "lucide-react";
 import { Section } from "@/components/section";
+import { GhostWord } from "@/components/ghost-word";
 import { SectionHeading } from "@/components/section-heading";
 import { EASE } from "@/lib/motion";
 
@@ -19,6 +20,7 @@ export function HowWeWork() {
       index={4}
       surface="recessed"
       motionTier="static"
+      background={<GhostWord size="md" align="left" drift={100}>control</GhostWord>}
     >
       <SectionHeading subtitle="Three phases. Six weeks. Structured and repeatable.">
         How engagements run.

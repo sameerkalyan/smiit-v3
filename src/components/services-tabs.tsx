@@ -4,6 +4,7 @@ import { useState, useRef, useCallback } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { SERVICES } from "@/components/site-data";
 import { Section } from "@/components/section";
+import { GhostWord } from "@/components/ghost-word";
 import { ContentCard } from "@/components/content-card";
 import { Check } from "lucide-react";
 import { EASE } from "@/lib/motion";
@@ -53,6 +54,7 @@ export function ServicesTabs() {
       index={3}
       surface="base"
       motionTier="static"
+      background={<GhostWord size="lg" align="right" drift={140}>governance</GhostWord>}
     >
       <div ref={sectionRef} className="flex flex-col lg:flex-row gap-8">
         <motion.div

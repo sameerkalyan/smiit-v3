@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { FrameworksMarquee } from "@/components/frameworks-marquee";
 import { FRAMEWORKS } from "@/components/site-data";
 import { Section } from "@/components/section";
+import { GhostWord } from "@/components/ghost-word";
 import { SectionHeading } from "@/components/section-heading";
 import { motion, useInView } from "motion/react";
 import { EASE } from "@/lib/motion";
@@ -19,6 +20,7 @@ export function FrameworksSection() {
       index={5}
       surface="base"
       motionTier="static"
+      background={<GhostWord size="md" align="right" drift={90}>standards</GhostWord>}
     >
       <SectionHeading subtitle="Regulatory, security, and AI-specific frameworks integrated into our methodology.">
         Every engagement anchored to recognised standards.

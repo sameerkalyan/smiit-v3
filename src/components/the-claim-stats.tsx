@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/section";
+import { GhostWord } from "@/components/ghost-word";
 import { motion } from "motion/react";
 import { STAT_73PCT_NOTE } from "@/components/site-data";
 import { EASE } from "@/lib/motion";
@@ -15,6 +16,7 @@ export function TheClaimStats() {
       surface="base"
       motionTier="supported"
       className="border-y border-[var(--line)]"
+      background={<GhostWord size="xl" align="left" drift={180} opacityRange={[0.04, 0.10, 0.04]}>73%</GhostWord>}
     >
       <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
         <div>
