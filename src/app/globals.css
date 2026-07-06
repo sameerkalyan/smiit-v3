@@ -231,14 +231,8 @@
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
 
 
-/* ── CUSTOM CURSOR ── */
-html.custom-cursor,
-html.custom-cursor a,
-html.custom-cursor button,
-html.custom-cursor [role="button"],
-html.custom-cursor [data-cursor] {
-  cursor: none;
-}
+/* ── CUSTOM CURSOR (ring only on interactive hover) ── */
+/* native cursor stays visible everywhere */
 
 
 /* ── GLITCH REVEAL ── */
