@@ -3,11 +3,11 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { motion, useScroll, useTransform, useMotionValueEvent, type MotionValue } from "motion/react";
+import { motion, useScroll, useTransform, useMotionValueEvent, useMotionValue, type MotionValue } from "motion/react";
 import { READINESS_DATA, STAT_73PCT_NOTE } from "@/components/site-data";
 import { GhostWord } from "@/components/ghost-word";
 
-function BarItem({ pct, label, barProgress }: { pct: number; label: string; barProgress: MotionValue<number> }) {
+function BarItem({ pct, label, barMax }: { pct: number; label: string; barMax: MotionValue<number> }) {
   return (
     <div className="flex items-center gap-4">
       <span className="text-[10px] font-mono text-[var(--ink3)] w-40 shrink-0 text-right pr-3 leading-tight">
@@ -18,7 +18,7 @@ function BarItem({ pct, label, barProgress }: { pct: number; label: string; barP
           className="absolute inset-y-0 left-0 bg-[var(--brutalist-accent-light)]"
           style={{
             width: `${pct}%`,
-            scaleX: barProgress,
+            scaleX: barMax,
             transformOrigin: "left center",
           }}
         />
@@ -33,27 +33,54 @@ function BarItem({ pct, label, barProgress }: { pct: number; label: string; barP
 export function TheClaimStats() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState(0);
+  const maxProgress = useRef(0);
+
+  const bar1Max = useMotionValue(0);
+  const bar2Max = useMotionValue(0);
+  const bar3Max = useMotionValue(0);
+  const bar4Max = useMotionValue(0);
+  const bar5Max = useMotionValue(0);
+  const bar6Max = useMotionValue(0);
+  const barMaxes = [bar1Max, bar2Max, bar3Max, bar4Max, bar5Max, bar6Max];
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (v < 0.08) { setCount(0); return; }
-    if (v > 0.65) { setCount(73); return; }
-    setCount(Math.round(((v - 0.08) / 0.57) * 73));
-  });
+    if (v > maxProgress.current) maxProgress.current = v;
 
-  const bar1 = useTransform(scrollYProgress, [0.1, 0.38], [0, 1]);
-  const bar2 = useTransform(scrollYProgress, [0.17, 0.45], [0, 1]);
-  const bar3 = useTransform(scrollYProgress, [0.24, 0.52], [0, 1]);
-  const bar4 = useTransform(scrollYProgress, [0.31, 0.59], [0, 1]);
-  const bar5 = useTransform(scrollYProgress, [0.38, 0.66], [0, 1]);
-  const bar6 = useTransform(scrollYProgress, [0.45, 0.73], [0, 1]);
-  const barProgresses = [bar1, bar2, bar3, bar4, bar5, bar6];
+    if (v < 0.08) {
+      setCount(0);
+      barMaxes.forEach((b) => b.set(0));
+      return;
+    }
+    if (v > 0.65) {
+      setCount(73);
+      barMaxes.forEach((b) => b.set(1));
+      return;
+    }
+
+    setCount((prev) => {
+      const target = Math.round(((v - 0.08) / 0.57) * 73);
+      return Math.max(prev, target);
+    });
+
+    barMaxes.forEach((barMax, i) => {
+      const windows = [
+        [0.1, 0.38], [0.17, 0.45], [0.24, 0.52],
+        [0.31, 0.59], [0.38, 0.66], [0.45, 0.73],
+      ];
+      const [wStart, wEnd] = windows[i];
+      const barVal = Math.max(0, Math.min(1, (maxProgress.current - wStart) / (wEnd - wStart)));
+      barMax.set(barVal);
+    });
+  });
 
   const contentProgress = useTransform(scrollYProgress, [0.72, 0.88], [0, 1]);
   const scrollBarProgress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const lineProgress = useTransform(scrollYProgress, [0.08, 0.45], [0, 1]);
 
   return (
     <div
@@ -77,7 +104,7 @@ export function TheClaimStats() {
                   </motion.span>
                   <motion.div
                     className="h-1 bg-[var(--brutalist-accent-light)] origin-left"
-                    style={{ scaleX: useTransform(scrollYProgress, [0.08, 0.45], [0, 1]) }}
+                    style={{ scaleX: lineProgress }}
                   />
                 </div>
                 <motion.h2
@@ -100,7 +127,7 @@ export function TheClaimStats() {
                 </p>
                 <div className="flex flex-col gap-4">
                   {READINESS_DATA.map((item, i) => (
-                    <BarItem key={item.label} pct={item.pct} label={item.label} barProgress={barProgresses[i]} />
+                    <BarItem key={item.label} pct={item.pct} label={item.label} barMax={barMaxes[i]} />
                   ))}
                 </div>
 
