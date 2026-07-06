@@ -66,7 +66,7 @@ function ProofCard({
       <span className="text-4xl font-mono font-bold leading-none tabular-nums text-[var(--ink)]">
         {display}
       </span>
-      <p className="text-xs font-mono leading-relaxed text-[var(--ink2)] min-h-[3.5rem]">
+      <p className="text-base leading-relaxed text-[var(--ink2)] min-h-[3.5rem]">
         {card.label}
       </p>
       <motion.span
@@ -123,7 +123,7 @@ export function ProofBlock() {
           <SectionHeading subtitle="Real engagements, measurable outcomes." className="mb-0">
             Evidence, not assurances
           </SectionHeading>
-          <p className="text-sm font-mono leading-relaxed text-[var(--ink2)] max-w-prose">
+          <p className="text-sm leading-relaxed text-[var(--ink2)] max-w-prose">
             Every engagement is scoped, measured, and shipped. The numbers below are pulled
             from live client work — not marketing estimates.
           </p>

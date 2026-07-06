@@ -145,7 +145,7 @@ export function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm font-mono uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent-light)] focus-visible:text-[var(--brutalist-accent-light)] transition-colors duration-150"
+                className="text-sm font-mono uppercase tracking-wider text-[var(--ink)] hover:text-[var(--emphasis-text)] focus-visible:text-[var(--emphasis-text)] transition-colors duration-150"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}

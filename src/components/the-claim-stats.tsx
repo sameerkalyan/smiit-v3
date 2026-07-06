@@ -135,13 +135,13 @@ export function TheClaimStats() {
                   className="mt-8 border-l-2 border-[var(--brutalist-accent-light)] pl-6"
                   style={{ opacity: contentProgress }}
                 >
-                  <p className="text-sm font-mono text-[var(--ink2)] leading-relaxed mb-6">
+                  <p className="text-base text-[var(--ink2)] leading-relaxed mb-6">
                     The governance gap is especially acute in regulated industries —
                     financial services, healthcare, and critical infrastructure — where
                     the consequences of ungoverned AI compound over time.
                   </p>
                   <blockquote className="border-l-2 border-[var(--brutalist-accent)] pl-6 py-1 mb-8">
-                    <p className="text-sm font-mono text-[var(--ink)] leading-relaxed">
+                    <p className="text-base text-[var(--ink)] leading-relaxed">
                       The organisations that govern AI well will not just avoid
                       regulatory risk — they will move faster, with greater confidence,
                       than those who do not.
@@ -149,7 +149,7 @@ export function TheClaimStats() {
                   </blockquote>
                   <Link
                     href="#services"
-                    className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent-light)]"
+                    className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--emphasis-text)]"
                   >
                     EXPLORE OUR SERVICES <ArrowRight size={14} strokeWidth={2.5} />
                   </Link>

@@ -117,7 +117,7 @@ export function ServicesTabs() {
                   <h3 className="text-xl font-mono font-bold tracking-tight uppercase text-[var(--ink)] mb-4">
                     {active.title}
                   </h3>
-                  <p className="text-sm font-mono text-[var(--ink2)] leading-relaxed mb-6">
+                  <p className="text-base text-[var(--ink2)] leading-relaxed mb-6">
                     {active.description}
                   </p>
                   <div className="flex flex-col gap-3">
@@ -126,7 +126,7 @@ export function ServicesTabs() {
                          <span className="feat-icon text-[var(--brutalist-accent-light)]">
                           <Check size={14} strokeWidth={2.5} />
                         </span>
-                        <span className="text-sm font-mono text-[var(--ink2)] leading-snug">
+                        <span className="text-sm text-[var(--ink2)] leading-snug">
                           {b}
                         </span>
                       </div>

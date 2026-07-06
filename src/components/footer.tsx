@@ -23,13 +23,13 @@ export function Footer() {
                 SMIIT CyberAI
               </span>
             </Link>
-            <p className="text-xs font-mono text-[var(--pa)]/70 leading-relaxed max-w-xs mb-6">
+            <p className="text-sm text-[var(--pa)]/70 leading-relaxed max-w-xs mb-6">
               AI Governance and Infrastructure Consultancy for regulated enterprise.
               Specialist, independent, and anchored in practice. London, UK.
             </p>
             <Link
               href="mailto:hello@smiitcyberai.com"
-              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--pa)]/60 hover:text-[var(--brutalist-accent-light)] transition-colors duration-150"
+              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--pa)]/60 hover:text-[var(--pa)] transition-colors duration-150"
               aria-label="Email hello@smiitcyberai.com"
             >
               <Mail size={14} /> hello@smiitcyberai.com
@@ -38,7 +38,7 @@ export function Footer() {
 
           {FOOTER_GROUPS.map((group) => (
             <div key={group.title}>
-              <p className="text-[10px] font-mono text-[var(--brutalist-accent-light)] uppercase tracking-widest mb-4">
+              <p className="text-[10px] font-mono text-[var(--pa)] uppercase tracking-widest mb-4">
                 {group.title}
               </p>
               <nav aria-label={`${group.title} links`}>
@@ -47,7 +47,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="footer-link text-xs font-mono uppercase tracking-wider text-[var(--pa)]/70 hover:text-[var(--brutalist-accent-light)] transition-colors duration-150"
+                        className="footer-link text-xs font-mono uppercase tracking-wider text-[var(--pa)]/70 hover:text-[var(--pa)] transition-colors duration-150"
                       >
                         {link.label}
                       </Link>
@@ -60,16 +60,16 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t-2 border-[var(--pa)]/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[10px] font-mono text-[var(--pa)]/50 uppercase tracking-widest">
-            © 2026 SMIIT CyberAI Ltd. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-[10px] font-mono text-[var(--pa)]/50 uppercase tracking-widest hover:text-[var(--brutalist-accent-light)] transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-[10px] font-mono text-[var(--pa)]/50 uppercase tracking-widest hover:text-[var(--brutalist-accent-light)] transition-colors">
-              Terms of Service
-            </Link>
+            <p className="text-[10px] font-mono text-[var(--pa)]/50 uppercase tracking-widest">
+              © 2026 SMIIT CyberAI Ltd. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link href="/privacy" className="text-[10px] font-mono text-[var(--pa)]/50 uppercase tracking-widest hover:text-[var(--pa)] transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="text-[10px] font-mono text-[var(--pa)]/50 uppercase tracking-widest hover:text-[var(--pa)] transition-colors">
+                Terms of Service
+              </Link>
           </div>
         </div>
       </div>

@@ -1,13 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/custom-cursor";
 import "./globals.css";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -59,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={jetBrainsMono.variable} suppressHydrationWarning>
+    <html lang="en" className={`${jetBrainsMono.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -67,7 +74,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased font-mono">
+      <body className="antialiased font-sans">
         <ThemeProvider>
           <CustomCursor />
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--brutalist-accent)] focus:text-[var(--brutalist-accent-foreground)] focus:font-mono focus:text-xs focus:uppercase">

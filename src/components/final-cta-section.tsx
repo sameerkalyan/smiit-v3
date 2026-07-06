@@ -47,7 +47,7 @@ export function FinalCTASection() {
             PROPERLY GOVERNED.
           </motion.span>
         </h2>
-        <p className="text-sm font-mono leading-relaxed mb-8 max-w-lg text-[var(--brutalist-accent-foreground)]/80">
+        <p className="text-base leading-relaxed mb-8 max-w-lg text-[var(--brutalist-accent-foreground)]/80">
           Free assessments and senior conversations. No strings. No process. First step towards compliant,
           confident AI adoption.
         </p>

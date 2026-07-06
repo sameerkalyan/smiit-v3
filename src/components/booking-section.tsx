@@ -38,7 +38,7 @@ export function BookingSection() {
                   <p className="text-[10px] font-mono tracking-widest uppercase text-[var(--ink3)] mb-2">
                     {type.duration}
                   </p>
-                  <p className="text-xs font-mono text-[var(--ink2)] leading-relaxed">
+                  <p className="text-sm text-[var(--ink2)] leading-relaxed">
                     {type.description}
                   </p>
                 </div>
@@ -46,7 +46,7 @@ export function BookingSection() {
                   href={type.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent-light)] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--emphasis-text)] transition-colors"
                   aria-label={`Book ${type.label} (opens in new window)`}
                 >
                   BOOK NOW <ArrowRight size={14} strokeWidth={2.5} />

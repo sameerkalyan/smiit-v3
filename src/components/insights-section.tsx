@@ -40,7 +40,7 @@ function FeaturedCard({ article, isInView }: { article: BlogArticle; isInView: b
           <h3 className="text-xl md:text-2xl lg:text-3xl font-mono font-bold tracking-tight uppercase mb-5 leading-tight" style={{ color: "var(--brutalist-accent-foreground)" }}>
             {article.title}
           </h3>
-          <p className="text-sm font-mono leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>
+          <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.7)" }}>
             {article.excerpt}
           </p>
           <div className="flex items-center gap-3 mt-auto">
@@ -90,7 +90,7 @@ function CompactList({ articles, isInView }: { articles: BlogArticle[]; isInView
                   <span className="text-[8px] text-[var(--ink3)]">&middot;</span>
                   <span className="text-[8px] font-mono text-[var(--ink3)]">{article.date}</span>
                 </div>
-                <h4 className="text-xs font-mono font-bold tracking-tight uppercase text-[var(--ink)] group-hover:text-[var(--brutalist-accent-light)] transition-colors leading-snug">
+                <h4 className="text-xs font-mono font-bold tracking-tight uppercase text-[var(--ink)] group-hover:text-[var(--emphasis-text)] transition-colors leading-snug">
                   {article.title}
                 </h4>
               </div>
@@ -238,7 +238,7 @@ export function InsightsSection() {
             <h3 className="text-lg font-mono font-bold uppercase tracking-tight text-[var(--ink)] mb-2">
               The SMIIT Intelligence Brief
             </h3>
-            <p className="text-xs font-mono text-[var(--ink2)]">
+            <p className="text-sm text-[var(--ink2)]">
               Fortnightly analysis for technology and compliance leaders. No noise, just signal.
             </p>
           </div>

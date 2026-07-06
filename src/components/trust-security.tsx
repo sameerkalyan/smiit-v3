@@ -35,7 +35,7 @@ export function TrustSecurity() {
               <h3 className="text-sm font-mono font-bold tracking-tight uppercase mb-1">
                 {signal.title}
               </h3>
-              <p className="text-xs font-mono leading-relaxed text-[var(--ink2)]">
+              <p className="text-sm leading-relaxed text-[var(--ink2)]">
                 {signal.description}
               </p>
             </FeatureGrid.Item>

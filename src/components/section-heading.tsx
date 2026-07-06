@@ -32,7 +32,7 @@ export function SectionHeading({
         </motion.span>
       </Tag>
       {subtitle && (
-        <p className="text-xs lg:text-sm font-mono text-[var(--ink3)] leading-relaxed mt-3 max-w-md">
+        <p className="text-base lg:text-lg text-[var(--ink3)] leading-relaxed mt-3 max-w-md">
           {subtitle}
         </p>
       )}

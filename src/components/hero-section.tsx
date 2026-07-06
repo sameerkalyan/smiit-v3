@@ -64,7 +64,7 @@ export function HeroSection() {
           </h1>
 
           <p
-            className="text-sm md:text-base font-mono text-[var(--ink2)] leading-relaxed mb-6 transition-opacity duration-500 max-w-2xl mx-auto"
+            className="text-base md:text-lg text-[var(--ink2)] leading-relaxed mb-6 transition-opacity duration-500 max-w-2xl mx-auto"
             style={{ opacity: typingDone ? 1 : 0 }}
           >
             <DiaTextReveal
@@ -74,7 +74,7 @@ export function HeroSection() {
           </p>
 
           <p
-            className="text-xs font-mono text-[var(--ink3)] mb-10 transition-opacity duration-500"
+            className="text-xs text-[var(--ink3)] mb-10 transition-opacity duration-500"
             style={{ opacity: typingDone ? 1 : 0 }}
           >
             For Heads of Compliance, CISOs, and AI platform owners in financial services,
@@ -99,7 +99,7 @@ export function HeroSection() {
             </Magnetic>
             <Link
               href="#services"
-              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--brutalist-accent-light)]"
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[var(--ink)] hover:text-[var(--emphasis-text)]"
             >
               EXPLORE OUR SERVICES <ArrowRight size={14} strokeWidth={2.5} />
             </Link>

@@ -53,7 +53,7 @@ export function FrameworksSection() {
                 {fw.name}
               </motion.span>
               <motion.span
-                className="text-xs font-mono text-[var(--ink2)]"
+                className="text-sm text-[var(--ink2)]"
                 initial={{ opacity: 0, x: -8 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
                 transition={{ duration: 0.3, ease: EASE, delay: rowDelay + 0.15 }}

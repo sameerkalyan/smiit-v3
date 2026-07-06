@@ -41,7 +41,7 @@ export function CookieConsent() {
       aria-label="Cookie consent"
     >
       <div className="mx-auto max-w-7xl px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        <p className="text-xs font-mono text-[var(--ink2)] leading-relaxed flex-1">
+        <p className="text-sm text-[var(--ink2)] leading-relaxed flex-1">
           We use essential cookies to ensure this site functions correctly. By continuing, you agree to our{" "}
           <Link href="/privacy" className="text-[var(--brutalist-accent-light)] hover:underline">
             Privacy Policy
