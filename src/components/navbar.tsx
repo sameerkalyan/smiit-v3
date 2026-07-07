@@ -100,6 +100,7 @@ export function Navbar() {
 
         <div className="hidden md:flex flex-1 items-center justify-center">
           <Dock
+            compact={scrolled}
             items={NAV_ITEMS.map((item) => ({
               label: item.label,
               href: item.href,

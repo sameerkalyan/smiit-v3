@@ -605,6 +605,7 @@ export function CyberCityCanvas({ active = false }: { active?: boolean }) {
   const lastMoveRef = useRef(0);
   const lastRippleRef = useRef(0);
   const prevActiveRef = useRef(false);
+  const [inView, setInView] = useState(true);
 
   useEffect(() => {
     prefersReducedMotion.current =
@@ -633,6 +634,21 @@ export function CyberCityCanvas({ active = false }: { active?: boolean }) {
     }
     prevActiveRef.current = active;
   }, [active]);
+
+  // Pause the entire render loop when the hero canvas leaves the viewport so we
+  // don't burn GPU/CPU animating an off-screen WebGL scene.
+  useEffect(() => {
+    const el = document.getElementById("hero");
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (prefersReducedMotion.current || isTouchDevice.current) return;
@@ -710,7 +726,7 @@ export function CyberCityCanvas({ active = false }: { active?: boolean }) {
     >
       <Canvas
         dpr={1}
-        frameloop="always"
+        frameloop={!inView ? "never" : reducedMotion ? "demand" : "always"}
         gl={{ antialias: true, alpha: false }}
         className="w-full h-full"
       >
