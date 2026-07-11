@@ -77,6 +77,24 @@ export const SERVICES = [
     frameworks: ["AWS", "Azure", "GCP", "Terraform"],
     stackRows: ["AWS", "Azure", "GCP", "Terraform", "Kubernetes"],
   },
+  {
+    id: 3,
+    tag: "Engineering",
+    title: "Forward-Deployed Engineering",
+    description:
+      "Senior engineers who embed with your teams and ship. We deploy alongside you, turning governance and architecture into production systems — not slideware.",
+    bullets: [
+      "Embedded engineering pods (forward-deployed)",
+      "Production AI system delivery",
+      "MLOps, CI/CD & platform enablement",
+      "Guardrails, runbooks & automations as code",
+      "Hands-on build — not advisory only",
+      "Knowledge transfer to your teams",
+    ],
+    sideItems: ["Engineering", "Ship", "Embedded"],
+    frameworks: ["Kubernetes", "Terraform", "CI/CD", "Python"],
+    stackRows: ["Kubernetes", "Terraform", "CI/CD", "Python", "GCP"],
+  },
 ];
 
 export const BLOG_ARTICLES = [

@@ -1,19 +1,89 @@
 "use client";
 
 import { useRef } from "react";
-import { useInView } from "motion/react";
+import { motion, useInView } from "motion/react";
+import { EASE } from "@/lib/motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { AnimatedButton } from "@/components/animated-button";
 import { Magnetic } from "@/components/magnetic";
-import { DiaTextReveal } from "@/components/dia-text-reveal";
+
 import dynamic from "next/dynamic";
 
 const InfrastructureGrid = dynamic(
   () => import("@/components/infrastructure-grid").then((mod) => ({ default: mod.InfrastructureGrid })),
   { ssr: false }
 );
+
+const GREEN = "#9BEF74";
+
+const CLAIM_WORDS: { t: string; accent?: boolean }[] = [
+  { t: "We" },
+  { t: "build" },
+  { t: "governed" },
+  { t: "AI" },
+  { t: "systems" },
+  { t: "that" },
+  { t: "regulators" },
+  { t: "trust", accent: true },
+  { t: "and" },
+  { t: "engineers" },
+  { t: "ship", accent: true },
+  { t: "." },
+];
+
+const PILLARS = [
+  "Governance programmes",
+  "Cloud architecture",
+  "Forward-deployed engineers",
+];
+
+function ClaimLine({ active }: { active: boolean }) {
+  return (
+    <p className="text-base md:text-lg leading-relaxed mb-2 max-w-2xl mx-auto">
+      {CLAIM_WORDS.map((w, i) => (
+        <motion.span
+          key={`${w.t}-${i}`}
+          className="inline-block mr-[0.22em]"
+          style={{
+            color: w.accent ? GREEN : "#D6D6D6",
+            textShadow: w.accent ? "0 0 6px rgba(155,239,116,0.18)" : "none",
+          }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.1 + i * 0.04 }}
+        >
+          {w.t}
+          {i < CLAIM_WORDS.length - 1 ? " " : ""}
+        </motion.span>
+      ))}
+    </p>
+  );
+}
+
+function PillarRow({ active }: { active: boolean }) {
+  return (
+    <div className="mt-4 mb-8 flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto">
+      {PILLARS.map((p, i) => (
+        <motion.span
+          key={p}
+          className="inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-mono uppercase tracking-[0.12em]"
+          style={{
+            borderColor: "rgba(155,239,116,0.35)",
+            color: GREEN,
+            textShadow: "0 0 6px rgba(155,239,116,0.12)",
+          }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.55 + i * 0.08 }}
+        >
+          {p}
+        </motion.span>
+      ))}
+    </div>
+  );
+}
 
 const LINE1 = "EU AI ACT ENFORCEMENT";
 const LINE2 = "HAS BEGUN.";
@@ -80,20 +150,9 @@ export function HeroSection({ introComplete = true }: HeroSectionProps) {
             </span>
           </h1>
 
-          <p
-            className="text-base md:text-lg leading-relaxed mb-6 transition-opacity duration-500 max-w-2xl mx-auto"
-            style={{
-              opacity: typingDone ? 1 : 0,
-              color: "#D6D6D6",
-              fontFamily: "var(--font-sans)",
-              fontWeight: 400,
-            }}
-          >
-            <DiaTextReveal
-              text="We help regulated organisations move from obligation to evidence — governance programmes, cloud architecture, and forward-deployed engineers who ship."
-              active={typingDone}
-            />
-          </p>
+          <ClaimLine active={typingDone} />
+
+          <PillarRow active={typingDone} />
 
           <p
             className="text-xs mb-10 transition-opacity duration-500"
