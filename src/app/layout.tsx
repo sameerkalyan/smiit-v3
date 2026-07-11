@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Inter } from "next/font/google";
+import { JetBrains_Mono, Inter, IBM_Plex_Mono, Bebas_Neue } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/custom-cursor";
 import "./globals.css";
@@ -15,6 +15,20 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-intro-mono",
+  display: "swap",
+});
+
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-hero",
   display: "swap",
 });
 
@@ -66,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jetBrainsMono.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${jetBrainsMono.variable} ${inter.variable} ${ibmPlexMono.variable} ${bebasNeue.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{

@@ -866,3 +866,184 @@ header[data-scrolled="true"]::before {
 .proof-deck .brutalist-card::after {
   display: none;
 }
+
+/* ── HERO INTRO: CRT TERMINAL ── */
+
+/* Static boot cover — rendered immediately (SSR) so the real page is hidden
+   from the first paint, while the dynamic intro chunk loads on top. */
+.intro-boot-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: #050505;
+  pointer-events: none;
+}
+
+.hero-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #050505;
+  overflow: hidden;
+}
+
+.hero-intro-terminal {
+  font-family: var(--font-intro-mono), "IBM Plex Mono", var(--font-mono), ui-monospace, monospace;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #9BEF74;
+  text-shadow: 0 0 4px rgba(155, 239, 116, 0.35), 0 0 12px rgba(155, 239, 116, 0.12);
+  white-space: pre;
+  line-height: 1.6;
+}
+
+.hero-intro-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background: #9BEF74;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  box-shadow: 0 0 6px rgba(155, 239, 116, 0.5);
+  animation: hero-intro-blink 0.8s step-end infinite;
+}
+
+@keyframes hero-intro-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* CRT scanlines overlay */
+.hero-intro-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.06) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  z-index: 5;
+}
+
+/* CRT vignette */
+.hero-intro-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.4) 100%);
+  z-index: 6;
+}
+
+/* CRT bloom */
+.hero-intro-bloom {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(155, 239, 116, 0.03) 0%, transparent 60%);
+  z-index: 4;
+}
+
+/* Skip intro button */
+.hero-intro-skip {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10000;
+  font-family: var(--font-intro-mono), "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8C8C8C;
+  background: transparent;
+  border: 1px solid rgba(155, 239, 116, 0.2);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.hero-intro-skip:hover,
+.hero-intro-skip:focus-visible {
+  color: #9BEF74;
+  border-color: rgba(155, 239, 116, 0.5);
+  outline: none;
+}
+
+/* Hero heading font */
+.hero-heading {
+  font-family: var(--font-hero), "Bebas Neue", sans-serif;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: #F4F4F4;
+}
+
+/* Infrastructure grid background */
+.infrastructure-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  background-image:
+    linear-gradient(rgba(155, 239, 116, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155, 239, 116, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: infra-grid-drift 60s linear infinite;
+}
+
+@keyframes infra-grid-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 48px 48px; }
+}
+
+.infrastructure-grid-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: radial-gradient(circle, rgba(155, 239, 116, 0.15) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: 24px 24px;
+  animation: infra-grid-drift 60s linear infinite;
+}
+
+/* Intro headline reveal — assembled line-by-line (easeOutExpo, no bounce) */
+@keyframes intro-headline-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+    letter-spacing: 0.12em;
+    filter: blur(6px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.02em;
+    filter: blur(0);
+  }
+}
+
+/* Navigation fades down once the intro completes (per brief) */
+@keyframes nav-fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html[data-intro="complete"] header {
+  animation: nav-fade-down 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

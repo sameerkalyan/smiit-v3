@@ -55,6 +55,7 @@ export function useTypewriter({
   }, [done]);
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     if (prefersReduced) {
       setDisplay(text);
       setDone(true);
@@ -62,6 +63,7 @@ export function useTypewriter({
       setDisplay("");
       setDone(false);
     }
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [text, prefersReduced]);
 
   useEffect(() => {
